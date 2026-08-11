@@ -59,9 +59,12 @@ jobs:
       - name: 执行股票分析
         env:
           # AI 配置（AGNES）
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.LLM_OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
-          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'agnes-2.5-flash' }}
+          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || 'openai/agnes-2.5-flash' }}
+          LLM_CHANNELS: ${{ vars.LLM_CHANNELS || 'openai' }}
+          LLM_OPENAI_BASE_URL: ${{ vars.LLM_OPENAI_BASE_URL || 'https://apihub.agnes-ai.com/v1' }}
+          LLM_OPENAI_MODELS: ${{ vars.LLM_OPENAI_MODELS || 'agnes-2.5-flash' }}
           
           # 飞书推送
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
